@@ -2,6 +2,8 @@
 
 A comprehensive, all-in-one developer utilities platform built with Next.js 15, featuring 10+ essential tools that every developer needs. Fast, responsive, and completely free to use.
 
+![Project Demo](./public/demo.png)
+
 ## 🎨 User Experience
 
 - **Dark/Light Mode** - Seamless theme switching with system preference detection
