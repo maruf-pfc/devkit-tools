@@ -1,0 +1,136 @@
+{
+  "categories": [
+    {
+      "id": "formatters",
+      "name": "Formatters",
+      "description": "Format and beautify your code and data"
+    },
+    {
+      "id": "generators",
+      "name": "Generators",
+      "description": "Generate various types of data and content"
+    },
+    {
+      "id": "validators",
+      "name": "Validators",
+      "description": "Validate and test your data and patterns"
+    },
+    {
+      "id": "converters",
+      "name": "Converters",
+      "description": "Convert between different formats and cases"
+    },
+    {
+      "id": "encoders",
+      "name": "Encoders",
+      "description": "Encode and decode various formats"
+    },
+    {
+      "id": "security",
+      "name": "Security",
+      "description": "Security-related tools and utilities"
+    },
+    {
+      "id": "web",
+      "name": "Web Tools",
+      "description": "Web development utilities"
+    },
+    {
+      "id": "datetime",
+      "name": "Date/Time",
+      "description": "Date and time manipulation tools"
+    }
+  ],
+  "tools": [
+    {
+      "id": "json-formatter",
+      "name": "JSON Formatter",
+      "slug": "json-formatter",
+      "description": "Format, validate, and beautify JSON data with syntax highlighting",
+      "category": "formatters",
+      "keywords": ["json", "format", "validate", "beautify", "syntax"],
+      "featured": true
+    },
+    {
+      "id": "uuid-generator",
+      "name": "UUID Generator",
+      "slug": "uuid-generator",
+      "description": "Generate UUID/GUID in various formats (v1, v4, v5)",
+      "category": "generators",
+      "keywords": ["uuid", "guid", "generate", "unique", "identifier"],
+      "featured": true
+    },
+    {
+      "id": "base64-encoder",
+      "name": "Base64 Encoder/Decoder",
+      "slug": "base64-encoder",
+      "description": "Encode and decode Base64 strings with support for files",
+      "category": "encoders",
+      "keywords": ["base64", "encode", "decode", "string", "file"],
+      "featured": true
+    },
+    {
+      "id": "regex-tester",
+      "name": "Regex Tester",
+      "slug": "regex-tester",
+      "description": "Test regular expressions with real-time matching and explanations",
+      "category": "validators",
+      "keywords": ["regex", "regexp", "test", "match", "pattern"],
+      "featured": true
+    },
+    {
+      "id": "text-case-converter",
+      "name": "Text Case Converter",
+      "slug": "text-case-converter",
+      "description": "Convert text between different cases (camelCase, snake_case, etc.)",
+      "category": "converters",
+      "keywords": ["text", "case", "convert", "camel", "snake", "pascal"],
+      "featured": true
+    },
+    {
+      "id": "color-picker",
+      "name": "Color Picker",
+      "slug": "color-picker",
+      "description": "Pick colors and convert between HEX, RGB, HSL, and other formats",
+      "category": "web",
+      "keywords": ["color", "picker", "hex", "rgb", "hsl", "convert"],
+      "featured": true
+    },
+    {
+      "id": "password-generator",
+      "name": "Password Generator",
+      "slug": "password-generator",
+      "description": "Generate secure passwords with customizable options",
+      "category": "security",
+      "keywords": ["password", "generate", "secure", "random", "strong"],
+      "featured": true
+    },
+    {
+      "id": "lorem-ipsum",
+      "name": "Lorem Ipsum Generator",
+      "slug": "lorem-ipsum",
+      "description": "Generate placeholder text in various formats and lengths",
+      "category": "generators",
+      "keywords": ["lorem", "ipsum", "placeholder", "text", "generate"],
+      "featured": true
+    },
+    {
+      "id": "jwt-decoder",
+      "name": "JWT Decoder",
+      "slug": "jwt-decoder",
+      "description": "Decode and inspect JSON Web Tokens (JWT)",
+      "category": "security",
+      "keywords": ["jwt", "json", "web", "token", "decode", "inspect"],
+      "featured": true
+    },
+    {
+      "id": "cron-parser",
+      "name": "Cron Expression Parser",
+      "slug": "cron-parser",
+      "description": "Parse and explain cron expressions with next run times",
+      "category": "datetime",
+      "keywords": ["cron", "expression", "parse", "schedule", "time"],
+      "featured": true
+    }
+  ]
+}
