@@ -1,0 +1,23 @@
+"tools/*":
+  - "tool"
+
+"components/**":
+  - "frontend"
+
+"data/**":
+  - "data"
+
+"app/**":
+  - "frontend"
+
+"hooks/**":
+  - "frontend"
+
+"lib/**":
+  - "backend"
+
+"README.md":
+  - "documentation"
+
+"CONTRIBUTING.md":
+  - "documentation"
