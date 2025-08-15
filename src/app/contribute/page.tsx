@@ -1,13 +1,23 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Github, ExternalLink, Code, Bug, Lightbulb, Heart, Users, Star } from "lucide-react"
-import Link from "next/link"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Github,
+  ExternalLink,
+  Code,
+  Bug,
+  Lightbulb,
+  Heart,
+  Users,
+  Star,
+} from "lucide-react";
+import Link from "next/link";
 
 export const metadata = {
   title: "Contribute | DevKit Tools",
-  description: "Learn how to contribute to DevKit Tools. Help us build the best developer utilities platform together.",
-}
+  description:
+    "Learn how to contribute to DevKit Tools. Help us build the best developer utilities platform together.",
+};
 
 export default function ContributePage() {
   const contributionTypes = [
@@ -26,23 +36,46 @@ export default function ContributePage() {
       icon: <Bug className="h-6 w-6" />,
       title: "Bug Reports",
       description: "Help us identify and fix issues to improve the platform.",
-      examples: ["Tool malfunctions", "UI/UX issues", "Browser compatibility", "Performance problems"],
+      examples: [
+        "Tool malfunctions",
+        "UI/UX issues",
+        "Browser compatibility",
+        "Performance problems",
+      ],
     },
     {
       icon: <Lightbulb className="h-6 w-6" />,
       title: "Feature Requests",
       description: "Suggest new tools or improvements to existing ones.",
-      examples: ["New utility tools", "Feature enhancements", "Integration ideas", "Workflow improvements"],
+      examples: [
+        "New utility tools",
+        "Feature enhancements",
+        "Integration ideas",
+        "Workflow improvements",
+      ],
     },
     {
       icon: <Users className="h-6 w-6" />,
       title: "Community Support",
-      description: "Help other developers and spread the word about DevKit Tools.",
-      examples: ["Answer questions", "Share on social media", "Write tutorials", "Create content"],
+      description:
+        "Help other developers and spread the word about DevKit Tools.",
+      examples: [
+        "Answer questions",
+        "Share on social media",
+        "Write tutorials",
+        "Create content",
+      ],
     },
-  ]
+  ];
 
-  const techStack = ["Next.js 15", "TypeScript", "Tailwind CSS", "shadcn/ui", "React", "Node.js"]
+  const techStack = [
+    "Next.js 15",
+    "TypeScript",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "React",
+    "Node.js",
+  ];
 
   const guidelines = [
     {
@@ -72,7 +105,7 @@ export default function ContributePage() {
         "Write clear commit messages",
       ],
     },
-  ]
+  ];
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -84,7 +117,8 @@ export default function ContributePage() {
             <h1 className="text-4xl font-bold">Contribute to DevKit Tools</h1>
           </div>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Help us build the best developer utilities platform. Every contribution makes a difference!
+            Help us build the best developer utilities platform. Every
+            contribution makes a difference!
           </p>
         </div>
 
@@ -97,34 +131,52 @@ export default function ContributePage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-muted-foreground">Ready to contribute? Here's how to get started in just a few steps:</p>
+            <p className="text-muted-foreground">
+              Ready to contribute? Here&apos;s how to get started in just a few
+              steps:
+            </p>
             <ol className="space-y-2 text-sm">
               <li className="flex items-start gap-3">
-                <Badge variant="outline" className="shrink-0 w-6 h-6 flex items-center justify-center p-0">
+                <Badge
+                  variant="outline"
+                  className="shrink-0 w-6 h-6 flex items-center justify-center p-0"
+                >
                   1
                 </Badge>
                 <span>
-                  <strong>Fork the repository</strong> on GitHub and clone it to your local machine
+                  <strong>Fork the repository</strong> on GitHub and clone it to
+                  your local machine
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <Badge variant="outline" className="shrink-0 w-6 h-6 flex items-center justify-center p-0">
+                <Badge
+                  variant="outline"
+                  className="shrink-0 w-6 h-6 flex items-center justify-center p-0"
+                >
                   2
                 </Badge>
                 <span>
-                  <strong>Install dependencies</strong> with <code className="bg-muted px-1 rounded">npm install</code>
+                  <strong>Install dependencies</strong> with{" "}
+                  <code className="bg-muted px-1 rounded">npm install</code>
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <Badge variant="outline" className="shrink-0 w-6 h-6 flex items-center justify-center p-0">
+                <Badge
+                  variant="outline"
+                  className="shrink-0 w-6 h-6 flex items-center justify-center p-0"
+                >
                   3
                 </Badge>
                 <span>
-                  <strong>Start development</strong> with <code className="bg-muted px-1 rounded">npm run dev</code>
+                  <strong>Start development</strong> with{" "}
+                  <code className="bg-muted px-1 rounded">npm run dev</code>
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <Badge variant="outline" className="shrink-0 w-6 h-6 flex items-center justify-center p-0">
+                <Badge
+                  variant="outline"
+                  className="shrink-0 w-6 h-6 flex items-center justify-center p-0"
+                >
                   4
                 </Badge>
                 <span>
@@ -132,17 +184,25 @@ export default function ContributePage() {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <Badge variant="outline" className="shrink-0 w-6 h-6 flex items-center justify-center p-0">
+                <Badge
+                  variant="outline"
+                  className="shrink-0 w-6 h-6 flex items-center justify-center p-0"
+                >
                   5
                 </Badge>
                 <span>
-                  <strong>Submit a pull request</strong> with a clear description of your changes
+                  <strong>Submit a pull request</strong> with a clear
+                  description of your changes
                 </span>
               </li>
             </ol>
             <div className="flex gap-4 pt-4">
               <Button asChild>
-                <Link href="https://github.com/devkit-tools/devkit-tools" target="_blank" rel="noopener noreferrer">
+                <Link
+                  href="https://github.com/devkit-tools/devkit-tools"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Github className="h-4 w-4 mr-2" />
                   View on GitHub
                   <ExternalLink className="h-4 w-4 ml-2" />
@@ -171,7 +231,9 @@ export default function ContributePage() {
               <Card key={index}>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
-                    <div className="p-2 bg-primary/10 rounded-lg text-primary">{type.icon}</div>
+                    <div className="p-2 bg-primary/10 rounded-lg text-primary">
+                      {type.icon}
+                    </div>
                     {type.title}
                   </CardTitle>
                 </CardHeader>
@@ -201,8 +263,8 @@ export default function ContributePage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">
-              DevKit Tools is built with modern web technologies. Familiarity with these technologies will help you
-              contribute more effectively:
+              DevKit Tools is built with modern web technologies. Familiarity
+              with these technologies will help you contribute more effectively:
             </p>
             <div className="flex flex-wrap gap-2">
               {techStack.map((tech) => (
@@ -212,14 +274,17 @@ export default function ContributePage() {
               ))}
             </div>
             <p className="text-sm text-muted-foreground">
-              Don't worry if you're not familiar with all of these - we welcome contributors of all skill levels!
+              Don&apos;t worry if you&apos;re not familiar with all of these -
+              we welcome contributors of all skill levels!
             </p>
           </CardContent>
         </Card>
 
         {/* Contribution Guidelines */}
         <div className="space-y-6">
-          <h2 className="text-3xl font-bold text-center">Contribution Guidelines</h2>
+          <h2 className="text-3xl font-bold text-center">
+            Contribution Guidelines
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {guidelines.map((guideline, index) => (
               <Card key={index}>
@@ -248,10 +313,15 @@ export default function ContributePage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">
-              Connect with other contributors and stay updated on the latest developments:
+              Connect with other contributors and stay updated on the latest
+              developments:
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Button variant="outline" asChild className="justify-start bg-transparent">
+              <Button
+                variant="outline"
+                asChild
+                className="justify-start bg-transparent"
+              >
                 <Link
                   href="https://github.com/devkit-tools/devkit-tools/discussions"
                   target="_blank"
@@ -262,7 +332,11 @@ export default function ContributePage() {
                   <ExternalLink className="h-4 w-4 ml-auto" />
                 </Link>
               </Button>
-              <Button variant="outline" asChild className="justify-start bg-transparent">
+              <Button
+                variant="outline"
+                asChild
+                className="justify-start bg-transparent"
+              >
                 <Link
                   href="https://github.com/devkit-tools/devkit-tools/issues"
                   target="_blank"
@@ -282,11 +356,16 @@ export default function ContributePage() {
           <CardContent className="pt-6 text-center space-y-4">
             <h3 className="text-2xl font-semibold">Recognition & Thanks</h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              All contributors are recognized in our README and release notes. Your contributions help thousands of
-              developers worldwide be more productive. Thank you for making DevKit Tools better!
+              All contributors are recognized in our README and release notes.
+              Your contributions help thousands of developers worldwide be more
+              productive. Thank you for making DevKit Tools better!
             </p>
             <Button asChild size="lg">
-              <Link href="https://github.com/devkit-tools/devkit-tools" target="_blank" rel="noopener noreferrer">
+              <Link
+                href="https://github.com/devkit-tools/devkit-tools"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Heart className="h-4 w-4 mr-2" />
                 Start Contributing
                 <ExternalLink className="h-4 w-4 ml-2" />
@@ -296,5 +375,5 @@ export default function ContributePage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

@@ -63,10 +63,10 @@ export default function AboutPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground leading-relaxed">
-              As developers, we've all been there - spending precious minutes
-              searching for that JSON formatter, UUID generator, or regex tester
-              when we should be focusing on building amazing products. DevKit
-              Tools was born from this frustration.
+              As developers, we&apos;ve all been there - spending precious
+              minutes searching for that JSON formatter, UUID generator, or
+              regex tester when we should be focusing on building amazing
+              products. DevKit Tools was born from this frustration.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               Our mission is simple: provide developers with instant access to
