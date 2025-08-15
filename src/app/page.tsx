@@ -1,16 +1,11 @@
-import { Button } from "@/components/ui/button";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 
 export default function Home() {
   return (
-    <main className="flex items-center justify-center h-screen">
-      <Button className="text-5xl p-8 cursor-pointer">Hello World</Button>
-      <button
-        onClick={() => {
-          throw new Error("Test error triggered");
-        }}
-      >
-        Trigger Error
-      </button>
+    <main className="min-h-screen bg-gradient-to-br from-background to-muted/20">
+      <Header />
+      <Footer />
     </main>
   );
 }

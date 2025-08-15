@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react";
 import { Toaster } from "@/components/ui/sonner";
-import { ThemeProvider } from "./ThemeProvider";
+import { ThemeProvider } from "./providers/ThemeProvider";
 
 interface LayoutWrapperProps {
   children: ReactNode;

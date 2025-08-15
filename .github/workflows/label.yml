@@ -1,0 +1,30 @@
+name: Issue Labeler
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add labels based on title
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issue = context.payload.issue;
+            const title = issue.title.toLowerCase();
+            let labels = [];
+
+            if (title.includes('bug')) labels.push('bug');
+            if (title.includes('feature') || title.includes('enhancement')) labels.push('enhancement');
+            if (title.includes('docs') || title.includes('documentation')) labels.push('documentation');
+
+            if (labels.length > 0) {
+              await github.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: labels
+              });
+            }
