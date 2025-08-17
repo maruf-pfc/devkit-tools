@@ -199,7 +199,7 @@ export default function ContributePage() {
             <div className="flex gap-4 pt-4">
               <Button asChild>
                 <Link
-                  href="https://github.com/devkit-tools/devkit-tools"
+                  href="https://github.com/maruf-pfc/devkit-tools"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -210,7 +210,7 @@ export default function ContributePage() {
               </Button>
               <Button variant="outline" asChild>
                 <Link
-                  href="https://github.com/devkit-tools/devkit-tools/fork"
+                  href="https://github.com/maruf-pfc/devkit-tools/fork"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -323,7 +323,7 @@ export default function ContributePage() {
                 className="justify-start bg-transparent"
               >
                 <Link
-                  href="https://github.com/devkit-tools/devkit-tools/discussions"
+                  href="https://github.com/maruf-pfc/devkit-tools/discussions"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -338,7 +338,7 @@ export default function ContributePage() {
                 className="justify-start bg-transparent"
               >
                 <Link
-                  href="https://github.com/devkit-tools/devkit-tools/issues"
+                  href="https://github.com/maruf-pfc/devkit-tools/issues"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -362,7 +362,7 @@ export default function ContributePage() {
             </p>
             <Button asChild size="lg">
               <Link
-                href="https://github.com/devkit-tools/devkit-tools"
+                href="https://github.com/maruf-pfc/devkit-tools"
                 target="_blank"
                 rel="noopener noreferrer"
               >
