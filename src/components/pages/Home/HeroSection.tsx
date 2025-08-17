@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Github, Zap } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import FloatingElements from "./FloatingElements";
 
 const HeroSection = () => {
   return (
-    <section className="container mx-auto px-4 py-20 text-center">
-      <div className="max-w-4xl mx-auto">
+    <section className="relative container mx-auto px-4 py-20 text-center overflow-hidden">
+      <FloatingElements />
+      <div className="max-w-4xl mx-auto relative z-10">
         <Badge variant="secondary" className="mb-4">
           <Zap className="h-3 w-3 mr-1" />
           All-in-One Developer Toolkit
@@ -32,13 +34,9 @@ const HeroSection = () => {
             </Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <Link
-              href="https://github.com/maruf-pfc/devkit-tools"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github className="h-4 w-4 mr-2" />
-              Contribute on GitHub
+            <Link href="/resources">
+              Browse Resources
+              <ArrowRight className="h-4 w-4 ml-2" />
             </Link>
           </Button>
         </div>

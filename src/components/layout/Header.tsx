@@ -27,6 +27,12 @@ const Header = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-4">
           <Button variant="ghost" asChild>
+            <Link href="/">Home</Link>
+          </Button>
+          <Button variant="ghost" asChild>
+            <Link href="/resources">Resources</Link>
+          </Button>
+          <Button variant="ghost" asChild>
             <Link href="/about">About</Link>
           </Button>
           <Button variant="outline" asChild>
