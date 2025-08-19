@@ -10,7 +10,7 @@ interface LayoutWrapperProps {
 
 export default function LayoutWrapper({ children }: LayoutWrapperProps) {
   return (
-    <div className="font-sans antialiased">
+    <div className="font-sans antialiased grid-background-large min-h-screen">
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
