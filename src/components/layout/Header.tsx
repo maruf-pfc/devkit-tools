@@ -30,7 +30,16 @@ const Header = () => {
             <Link href="/">Home</Link>
           </Button>
           <Button variant="ghost" asChild>
+            <Link href="/tools">Tools</Link>
+          </Button>
+          <Button variant="ghost" asChild>
             <Link href="/resources">Resources</Link>
+          </Button>
+          <Button variant="ghost" asChild>
+            <Link href="/interview">Interview</Link>
+          </Button>
+          <Button variant="ghost" asChild>
+            <Link href="/github">GitHub</Link>
           </Button>
           <Button variant="ghost" asChild>
             <Link href="/about">About</Link>
