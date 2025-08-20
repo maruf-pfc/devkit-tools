@@ -1,160 +1,380 @@
 "use client";
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useState, useMemo } from "react";
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { Code2, Menu, ChevronDown, Star, Home, Search } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { categories, tools } from "@/lib/tools";
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Star, Search, X } from "lucide-react";
+import Link from "next/link";
+import { tools, categories, searchTools } from "@/lib/tools";
+import { useFavorites } from "@/context/favorites-context";
 
-// Sidebar content
-function SidebarContent() {
-  const favoriteTools = tools.filter((t) => t.featured);
+function HighlightedText({ text, query }: { text: string; query: string }) {
+  if (!query.trim()) return <span>{text}</span>;
+
+  const regex = new RegExp(
+    `(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
+    "gi"
+  );
+  const parts = text.split(regex);
 
   return (
-    <div className="flex flex-col h-full">
-      <ScrollArea className="flex-1 px-4">
-        <div className="space-y-4 py-4">
-          <div className="space-y-1">
-            <Link
-              href="/"
-              className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground text-muted-foreground"
+    <span>
+      {parts.map((part, index) =>
+        regex.test(part) ? (
+          <mark
+            key={index}
+            className="bg-yellow-200 dark:bg-yellow-800 px-1 rounded"
+          >
+            {part}
+          </mark>
+        ) : (
+          <span key={index}>{part}</span>
+        )
+      )}
+    </span>
+  );
+}
+
+export default function ToolsPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  const { favorites } = useFavorites();
+
+  const filteredTools = useMemo(() => {
+    let result = searchQuery.trim() ? searchTools(searchQuery) : tools;
+
+    if (showFavoritesOnly) {
+      result = result.filter((tool) => favorites.includes(tool.slug));
+    }
+
+    return result;
+  }, [searchQuery, showFavoritesOnly, favorites]);
+
+  const groupedTools = useMemo(() => {
+    const grouped: Record<string, typeof tools> = {};
+
+    filteredTools.forEach((tool) => {
+      if (!grouped[tool.category]) {
+        grouped[tool.category] = [];
+      }
+      grouped[tool.category].push(tool);
+    });
+
+    return grouped;
+  }, [filteredTools]);
+
+  const clearSearch = () => {
+    setSearchQuery("");
+    setShowFavoritesOnly(false);
+  };
+
+  const totalResults = filteredTools.length;
+  const hasActiveFilters = searchQuery.trim() || showFavoritesOnly;
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">All Developer Tools</h1>
+        <p className="text-muted-foreground">
+          Browse our complete collection of developer utilities
+        </p>
+      </div>
+
+      {/* Search and Filters */}
+      <div className="space-y-4 mb-8">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search tools by name, description, or keywords..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10 pr-10"
+          />
+          {searchQuery && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setSearchQuery("")}
+              className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0"
             >
-              <Home className="h-4 w-4" />
-              Home
-            </Link>
-            <Link
-              href="/tools"
-              className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground text-muted-foreground"
+              <X className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <Button
+            variant={showFavoritesOnly ? "default" : "outline"}
+            size="sm"
+            onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
+            className="flex items-center gap-2"
+          >
+            <Star className="h-4 w-4" />
+            Favorites Only
+            {favorites.length > 0 && (
+              <Badge
+                variant={showFavoritesOnly ? "secondary" : "default"}
+                className="ml-1"
+              >
+                {favorites.length}
+              </Badge>
+            )}
+          </Button>
+
+          {hasActiveFilters && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearSearch}
+              className="flex items-center gap-2"
             >
-              <Search className="h-4 w-4" />
-              All Tools
-            </Link>
-          </div>
-
-          <Separator />
-
-          {favoriteTools.length > 0 && (
-            <>
-              <div>
-                <h3 className="flex items-center gap-2 px-3 py-2 text-sm font-semibold">
-                  <Star className="h-4 w-4 text-yellow-500" />
-                  Favorites
-                  <Badge variant="secondary" className="ml-auto">
-                    {favoriteTools.length}
-                  </Badge>
-                </h3>
-                <div className="space-y-1">
-                  {favoriteTools.map((tool) => (
-                    <Link
-                      key={tool.id}
-                      href={`/tools/${tool.slug}`}
-                      className="block px-6 py-2 text-sm rounded-md hover:bg-accent hover:text-accent-foreground text-muted-foreground"
-                    >
-                      {tool.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <Separator />
-            </>
+              <X className="h-4 w-4" />
+              Clear Filters
+            </Button>
           )}
 
-          <div className="space-y-2">
-            {categories.map((category) => {
-              const categoryTools = tools.filter(
-                (t) => t.category === category.id
-              );
-
-              return (
-                <Collapsible key={category.id} defaultOpen>
-                  <CollapsibleTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-between px-3 py-2 h-auto font-medium text-sm"
-                    >
-                      <span className="flex items-center gap-2">
-                        {category.name}
-                        <Badge variant="outline" className="text-xs">
-                          {categoryTools.length}
-                        </Badge>
-                      </span>
-                      <ChevronDown className="h-4 w-4" />
-                    </Button>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent className="space-y-1">
-                    {categoryTools.map((tool) => (
-                      <Link
-                        key={tool.id}
-                        href={`/tools/${tool.slug}`}
-                        className="block px-6 py-2 text-sm rounded-md hover:bg-accent hover:text-accent-foreground text-muted-foreground"
-                      >
-                        <div className="flex items-center justify-between">
-                          {tool.name}
-                          {tool.featured && (
-                            <Star className="h-3 w-3 text-yellow-500" />
-                          )}
-                        </div>
-                      </Link>
-                    ))}
-                  </CollapsibleContent>
-                </Collapsible>
-              );
-            })}
+          <div className="ml-auto text-sm text-muted-foreground">
+            {totalResults} tool{totalResults !== 1 ? "s" : ""} found
           </div>
         </div>
-      </ScrollArea>
-    </div>
-  );
-}
+      </div>
 
-// Local Sidebar
-function Sidebar({ className }: { className?: string }) {
-  return (
-    <div className={cn("w-64 border-r bg-background", className)}>
-      <SidebarContent />
-    </div>
-  );
-}
+      {/* Results */}
+      {totalResults === 0 ? (
+        <Card>
+          <CardContent className="py-12 text-center">
+            <Search className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-lg font-semibold mb-2">No tools found</h3>
+            <p className="text-muted-foreground mb-4">
+              {showFavoritesOnly
+                ? "You haven't favorited any tools yet. Star some tools to see them here!"
+                : "Try adjusting your search terms or browse all available tools."}
+            </p>
+            {hasActiveFilters && (
+              <Button variant="outline" onClick={clearSearch}>
+                Clear Filters
+              </Button>
+            )}
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="space-y-8">
+          {/* Search Results */}
+          {searchQuery.trim() && !showFavoritesOnly && (
+            <div>
+              <div className="mb-4">
+                <h2 className="text-2xl font-semibold mb-1">
+                  Search Results for &quot;{searchQuery}&quot;
+                </h2>
+                <p className="text-muted-foreground">
+                  Found {totalResults} tool{totalResults !== 1 ? "s" : ""}{" "}
+                  matching your search
+                </p>
+              </div>
 
-// Local Mobile Sidebar
-function MobileSidebar() {
-  return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu className="h-5 w-5" />
-          <span className="sr-only">Toggle navigation menu</span>
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="left" className="w-64 p-0">
-        <SidebarContent />
-      </SheetContent>
-    </Sheet>
-  );
-}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredTools.map((tool) => {
+                  const category = categories.find(
+                    (cat) => cat.id === tool.category
+                  );
+                  return (
+                    <Card
+                      key={tool.id}
+                      className="hover:shadow-lg transition-shadow cursor-pointer group"
+                    >
+                      <Link href={`/tools/${tool.slug}`}>
+                        <CardHeader>
+                          <div className="flex items-center justify-between">
+                            <CardTitle className="group-hover:text-primary transition-colors text-lg">
+                              <HighlightedText
+                                text={tool.name}
+                                query={searchQuery}
+                              />
+                            </CardTitle>
+                            <div className="flex items-center gap-1">
+                              {tool.featured && (
+                                <Star className="h-4 w-4 text-yellow-500" />
+                              )}
+                              {favorites.includes(tool.slug) && (
+                                <Star className="h-4 w-4 text-blue-500 fill-current" />
+                              )}
+                            </div>
+                          </div>
+                          <CardDescription>
+                            <HighlightedText
+                              text={tool.description}
+                              query={searchQuery}
+                            />
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex flex-wrap gap-1 mb-2">
+                            {category && (
+                              <Badge variant="secondary">{category.name}</Badge>
+                            )}
+                          </div>
+                          <div className="flex flex-wrap gap-1">
+                            {tool.keywords.slice(0, 4).map((keyword) => (
+                              <Badge
+                                key={keyword}
+                                variant="outline"
+                                className="text-xs"
+                              >
+                                <HighlightedText
+                                  text={keyword}
+                                  query={searchQuery}
+                                />
+                              </Badge>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Link>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
-// Default Page export (required by Next.js)
-export default function ToolsPage() {
-  return (
-    <div className="flex">
-      <Sidebar className="hidden md:block" />
-      <main className="flex-1 p-6">
-        <h1 className="text-2xl font-bold mb-4">All Tools</h1>
-        <p className="text-muted-foreground mb-6">
-          Browse and use developer tools from the categories below.
-        </p>
-      </main>
-      <MobileSidebar />
+          {/* Favorites Only */}
+          {showFavoritesOnly && (
+            <div>
+              <div className="mb-4">
+                <h2 className="text-2xl font-semibold mb-1 flex items-center gap-2">
+                  <Star className="h-6 w-6 text-yellow-500" />
+                  Your Favorite Tools
+                </h2>
+                <p className="text-muted-foreground">
+                  {totalResults} favorite tool{totalResults !== 1 ? "s" : ""}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filteredTools.map((tool) => {
+                  const category = categories.find(
+                    (cat) => cat.id === tool.category
+                  );
+                  return (
+                    <Card
+                      key={tool.id}
+                      className="hover:shadow-lg transition-shadow cursor-pointer group"
+                    >
+                      <Link href={`/tools/${tool.slug}`}>
+                        <CardHeader>
+                          <div className="flex items-center justify-between">
+                            <CardTitle className="group-hover:text-primary transition-colors text-lg">
+                              {tool.name}
+                            </CardTitle>
+                            <div className="flex items-center gap-1">
+                              {tool.featured && (
+                                <Star className="h-4 w-4 text-yellow-500" />
+                              )}
+                              <Star className="h-4 w-4 text-blue-500 fill-current" />
+                            </div>
+                          </div>
+                          <CardDescription>{tool.description}</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex flex-wrap gap-1 mb-2">
+                            {category && (
+                              <Badge variant="secondary">{category.name}</Badge>
+                            )}
+                          </div>
+                          <div className="flex flex-wrap gap-1">
+                            {tool.keywords.slice(0, 4).map((keyword) => (
+                              <Badge
+                                key={keyword}
+                                variant="outline"
+                                className="text-xs"
+                              >
+                                {keyword}
+                              </Badge>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Link>
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Tools by Category (default view) */}
+          {!searchQuery.trim() && !showFavoritesOnly && (
+            <>
+              {categories.map((category) => {
+                const categoryTools = groupedTools[category.id];
+                if (!categoryTools || categoryTools.length === 0) return null;
+
+                return (
+                  <div key={category.id}>
+                    <div className="mb-4">
+                      <h2 className="text-2xl font-semibold mb-1">
+                        {category.name}
+                      </h2>
+                      <p className="text-muted-foreground">
+                        {category.description}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {categoryTools.map((tool) => (
+                        <Card
+                          key={tool.id}
+                          className="hover:shadow-lg transition-shadow cursor-pointer group"
+                        >
+                          <Link href={`/tools/${tool.slug}`}>
+                            <CardHeader>
+                              <div className="flex items-center justify-between">
+                                <CardTitle className="group-hover:text-primary transition-colors text-lg">
+                                  {tool.name}
+                                </CardTitle>
+                                <div className="flex items-center gap-1">
+                                  {tool.featured && (
+                                    <Star className="h-4 w-4 text-yellow-500" />
+                                  )}
+                                  {favorites.includes(tool.slug) && (
+                                    <Star className="h-4 w-4 text-blue-500 fill-current" />
+                                  )}
+                                </div>
+                              </div>
+                              <CardDescription className="mb-2">
+                                {tool.description}
+                              </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                              <div className="flex flex-wrap gap-1">
+                                {tool.keywords.slice(0, 4).map((keyword) => (
+                                  <Badge
+                                    key={keyword}
+                                    variant="secondary"
+                                    className="text-xs"
+                                  >
+                                    {keyword}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </CardContent>
+                          </Link>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }

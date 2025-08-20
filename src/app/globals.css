@@ -128,12 +128,12 @@
 }
 
 ::-moz-selection {
-  color: cyan;
+  color: oklch(58.5% 0.233 277.117);
   cursor: pointer;
 }
 
 ::selection {
-  color: cyan;
+  color: oklch(58.5% 0.233 277.117);
   cursor: pointer;
 }
 

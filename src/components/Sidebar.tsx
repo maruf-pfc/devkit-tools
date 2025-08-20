@@ -11,46 +11,15 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { Code2, Menu, ChevronDown, Star, Home, Search } from "lucide-react";
+import { Menu, ChevronDown, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { categories, tools } from "@/lib/tools";
 
 function SidebarContent() {
   return (
     <div className="flex flex-col h-full">
-      {/* Header */}
-      <div className="p-4 border-b">
-        <Link
-          href="/"
-          className="flex items-center gap-2 font-semibold text-lg hover:text-primary transition-colors"
-        >
-          <Code2 className="h-6 w-6" />
-          DevKit Tools
-        </Link>
-      </div>
-
       <ScrollArea className="flex-1 px-4">
         <div className="space-y-4 py-4">
-          {/* Navigation Links */}
-          <div className="space-y-1">
-            <Link
-              href="/"
-              className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground text-muted-foreground"
-            >
-              <Home className="h-4 w-4" />
-              Home
-            </Link>
-            <Link
-              href="/tools"
-              className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground text-muted-foreground"
-            >
-              <Search className="h-4 w-4" />
-              All Tools
-            </Link>
-          </div>
-
-          <Separator />
-
           {/* Favorites (static example) */}
           <div>
             <h3 className="flex items-center gap-2 px-3 py-2 text-sm font-semibold">
