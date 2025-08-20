@@ -55,7 +55,7 @@ const footerLinks = {
 
 const Footer = () => {
   return (
-    <footer className="border-t bg-muted/30">
+    <footer className="border-t bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-8">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
