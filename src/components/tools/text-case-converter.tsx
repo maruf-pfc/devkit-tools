@@ -7,9 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
 import { toast } from "sonner";
 
-// Helper function to handle clipboard copying
-// This was previously in an external file, causing the error.
-// By including it here, the component becomes self-contained.
 async function copyToClipboard(text: string): Promise<boolean> {
   if (!navigator.clipboard) {
     // Fallback for older browsers

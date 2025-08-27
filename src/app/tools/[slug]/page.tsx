@@ -1,8 +1,9 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getToolBySlug } from "@/lib/tools";
 import { ToolHeader } from "@/components/tool-header";
 import { TextCaseConverter } from "@/components/tools/text-case-converter";
-import type { Metadata } from "next";
+import { PasswordGenerator } from "@/components/tools/password-generator";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -29,6 +30,8 @@ function getToolComponent(slug: string) {
   switch (slug) {
     case "text-case-converter":
       return <TextCaseConverter />;
+    case "password-generator":
+      return <PasswordGenerator />;
     default:
       return null;
   }
