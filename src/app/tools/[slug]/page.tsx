@@ -4,6 +4,7 @@ import { getToolBySlug } from "@/lib/tools";
 import { ToolHeader } from "@/components/tool-header";
 import { TextCaseConverter } from "@/components/tools/text-case-converter";
 import { PasswordGenerator } from "@/components/tools/password-generator";
+import { ColorPicker } from "@/components/tools/color-picker";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -32,6 +33,8 @@ function getToolComponent(slug: string) {
       return <TextCaseConverter />;
     case "password-generator":
       return <PasswordGenerator />;
+    case "color-picker":
+      return <ColorPicker />;
     default:
       return null;
   }
