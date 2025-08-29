@@ -14,7 +14,6 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import {
-  Code2,
   Menu,
   ChevronDown,
   ChevronRight,
@@ -198,7 +197,7 @@ export function MobileSidebar() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu className="h-5 w-5" />
+          <Menu className="h-5 w-5 cursor-pointer" />
           <span className="sr-only">Toggle navigation menu</span>
         </Button>
       </SheetTrigger>
