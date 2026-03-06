@@ -1,17 +1,20 @@
-import React from "react";
+import { getResourcesRepos } from "@/lib/content";
+import { ResourceHub } from "@/components/ResourceHub";
 
-const ResourcesPage = () => {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-4">Developer Resources</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Curated collection of tools, libraries, and resources for developers.
-          Everything you need to build amazing projects.
-        </p>
-      </div>
-    </div>
-  );
+export const metadata = {
+  title: "Developer Resources | DevKit Tools",
+  description:
+    "Curated design resources, UI tools, fonts, icons, colors, and React component libraries for developers and designers.",
 };
 
-export default ResourcesPage;
+export default function ResourcesPage() {
+  const repos = getResourcesRepos();
+  return (
+    <ResourceHub
+      repos={repos}
+      title="Developer Resources"
+      description="Curated design assets, UI graphics, fonts, colors, icons, and React component libraries — everything to build beautiful products."
+      accentColor="from-violet-600 to-indigo-700"
+    />
+  );
+}

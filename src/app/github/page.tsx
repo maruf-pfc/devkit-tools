@@ -1,17 +1,20 @@
-import React from "react";
+import { getGithubRepos } from "@/lib/content";
+import { ResourceHub } from "@/components/ResourceHub";
 
-const GitHubResourcesPage = () => {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-4">Popular GitHub Repositories</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Discover the most popular and useful GitHub repositories. From
-          frameworks to tools, find your next favorite project.
-        </p>
-      </div>
-    </div>
-  );
+export const metadata = {
+  title: "GitHub Resources | DevKit Tools",
+  description:
+    "Discover awesome GitHub repositories — React ecosystem libraries, self-hosted software, and security/hacking tools.",
 };
 
-export default GitHubResourcesPage;
+export default function GitHubResourcesPage() {
+  const repos = getGithubRepos();
+  return (
+    <ResourceHub
+      repos={repos}
+      title="Popular GitHub Repositories"
+      description="Awesome curated GitHub repos — React frameworks & libraries, self-hosted software, and cybersecurity tools for hackers and pentesters."
+      accentColor="from-emerald-600 to-teal-700"
+    />
+  );
+}
