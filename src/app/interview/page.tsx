@@ -1,17 +1,20 @@
-import React from "react";
+import { getInterviewRepos } from "@/lib/content";
+import { ResourceHub } from "@/components/ResourceHub";
 
-const InterviewPreparationPage = () => {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-4">Interview Preparation</h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Comprehensive resources to ace your technical interviews. From
-          algorithms to system design, we&apos;ve got you covered.
-        </p>
-      </div>
-    </div>
-  );
+export const metadata = {
+  title: "Interview Preparation | DevKit Tools",
+  description:
+    "Comprehensive interview prep resources — algorithms, data structures, CS fundamentals, system design, and Bangladesh tech interview questions.",
 };
 
-export default InterviewPreparationPage;
+export default function InterviewPreparationPage() {
+  const repos = getInterviewRepos();
+  return (
+    <ResourceHub
+      repos={repos}
+      title="Interview Preparation"
+      description="Algorithms, data structures, CS fundamentals, OSSU free curriculum, system administration tools, and Bangladeshi tech company interview questions."
+      accentColor="from-orange-500 to-rose-600"
+    />
+  );
+}
