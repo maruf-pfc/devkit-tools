@@ -184,7 +184,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
 
 export function Sidebar({ className }: SidebarProps) {
   return (
-    <div className={cn("w-64 border-r bg-background", className)}>
+    <div className={cn("w-64 shrink-0 border-r bg-background", className)}>
       <SidebarContent />
     </div>
   );
